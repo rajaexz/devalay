@@ -1,0 +1,127 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appIDs": [
+                    "22LR5PHG5J.com.ios.devalay"
+                ],
+                "components": [
+                    {
+                        "/": "/apis/Post/*",
+                        "comment": "Post links with apis"
+                    },
+                    {
+                        "/": "/api/Post/*",
+                        "comment": "Post links with api"
+                    },
+                    {
+                        "/": "/apis/Devalay/*",
+                        "comment": "Temple links with apis"
+                    },
+                    {
+                        "/": "/api/Devalay/*",
+                        "comment": "Temple links with api"
+                    },
+                    {
+                        "/": "/apis/Event/*",
+                        "comment": "Event links with apis"
+                    },
+                    {
+                        "/": "/api/Event/*",
+                        "comment": "Event links with api"
+                    },
+                    {
+                        "/": "/apis/Festivel/*",
+                        "comment": "Festival links with apis (typo version)"
+                    },
+                    {
+                        "/": "/api/Festivel/*",
+                        "comment": "Festival links with api (typo version)"
+                    },
+                    {
+                        "/": "/apis/Festivals/*",
+                        "comment": "Festival links with apis"
+                    },
+                    {
+                        "/": "/api/Festivals/*",
+                        "comment": "Festival links with api"
+                    },
+                    {
+                        "/": "/apis/Puja/*",
+                        "comment": "Puja links with apis"
+                    },
+                    {
+                        "/": "/api/Puja/*",
+                        "comment": "Puja links with api"
+                    },
+                    {
+                        "/": "/apis/Dev/*",
+                        "comment": "Dev/God links with apis"
+                    },
+                    {
+                        "/": "/api/Dev/*",
+                        "comment": "Dev/God links with api"
+                    },
+                    {
+                        "/": "/apis/Gods/*",
+                        "comment": "Gods links with apis"
+                    },
+                    {
+                        "/": "/api/Gods/*",
+                        "comment": "Gods links with api"
+                    },
+                    {
+                        "/": "/apis/Devotees/*",
+                        "comment": "Devotees links with apis"
+                    },
+                    {
+                        "/": "/api/Devotees/*",
+                        "comment": "Devotees links with api"
+                    },
+                    {
+                        "/": "/Post/*",
+                        "comment": "Direct post links"
+                    },
+                    {
+                        "/": "/Devalay/*",
+                        "comment": "Direct temple links"
+                    },
+                    {
+                        "/": "/Event/*",
+                        "comment": "Direct event links"
+                    },
+                    {
+                        "/": "/Festivals/*",
+                        "comment": "Direct festival links"
+                    },
+                    {
+                        "/": "/Festivel/*",
+                        "comment": "Direct festival links (typo version)"
+                    },
+                    {
+                        "/": "/Dev/*",
+                        "comment": "Direct dev links"
+                    },
+                    {
+                        "/": "/Gods/*",
+                        "comment": "Direct gods links"
+                    },
+                    {
+                        "/": "/Devotees/*",
+                        "comment": "Direct devotees links"
+                    },
+                    {
+                        "/": "/Puja/*",
+                        "comment": "Direct puja links"
+                    }
+                ]
+            }
+        ]
+    },
+    "webcredentials": {
+        "apps": [
+            "22LR5PHG5J.com.ios.devalay"
+        ]
+    }
+}

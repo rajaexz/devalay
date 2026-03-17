@@ -1,0 +1,13 @@
+{
+  "relation": [
+    "delegate_permission/common.handle_all_urls"
+  ],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.devalay",
+    "sha256_cert_fingerprints": [
+      "88:E3:8D:96:01:A0:7D:FB:15:E2:02:B3:F2:37:F9:BD:0D:1C:8C:57:D1:DF:21:37:0F:D1:F3:0A:66:2F:2D:81"
+    ]
+  }
+}
+

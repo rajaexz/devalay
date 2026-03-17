@@ -1,0 +1,527 @@
+# Devalay App Design System Rules
+
+This document defines the design system rules for integrating Figma designs using the Model Context Protocol (MCP) in the Devalay Flutter app.
+
+---
+
+## 1. Token Definitions
+
+### Color Tokens
+All colors are defined in `lib/src/presentation/core/utils/colors.dart`:
+
+```dart
+// Primary Colors
+static const Color orangeColor = Color(0xffFF9500);      // Primary accent
+static const Color appbarBgColor = Color(0xffFF9500);    // AppBar background
+static const Color appbarBgColor2 = Color(0xffFDF2EE);   // Peach/cream background
+static const Color appbarBorderColor2 = Color(0xffFFE0D4); // Peach border
+
+// Background Colors
+static const Color whiteColor = Color(0xffFFFDFF);       // Main white
+static const Color lightScaffoldColor = Color(0xffFFFDF2); // Light scaffold
+static const Color splashBgColor = Color(0xffFFFCEE);    // Splash screen
+
+// Text Colors
+static const Color blackColor = Color(0xff111111);       // Primary text
+static const Color lightTextColor = Color(0xff494949);   // Secondary text
+static const Color subTitleTextColor = Color(0xff555151); // Subtitle text
+static const Color greyColor = Color(0xff828282);        // Grey text
+
+// Status Colors
+static const Color redColor = Color(0xffF5222D);         // Error/danger
+```
+
+### Figma to Flutter Color Mapping
+| Figma Variable | Flutter Token |
+|----------------|---------------|
+| `--primary-text, #241601` | `AppColor.blackColor` or `Color(0xFF241601)` |
+| `--background, #fffdff` | `AppColor.whiteColor` |
+| `#fee8e0` (selected chip) | `AppColor.appbarBgColor2` |
+| `#ffe0d4` (chip border) | `AppColor.appbarBorderColor2` |
+| `#12b76a` (success green) | `Color(0xFF12B76A)` |
+| `#d9d9d9` (disabled/border) | `Color(0xFFD9D9D9)` |
+| `rgba(60,60,67,0.18)` | `Color(0x2E3C3C43)` |
+| `#fdf2ee` (error bg) | `Color(0xFFFDF2EE)` |
+
+### Typography Tokens
+Defined in `lib/src/presentation/core/utils/theme.dart`:
+
+```dart
+// Font Family
+fontFamily: 'SF Pro'
+
+// Text Styles (use Theme.of(context).textTheme.*)
+headlineLarge:  40sp, weight: normal, color: orangeColor  // AppBar titles
+headlineMedium: 24sp, weight: normal                      // Dashboard names
+headlineSmall:  20sp, weight: w500, letterSpacing: 1     // Widget titles
+bodyLarge:      18sp, weight: w400, letterSpacing: 1     // Bottomsheet titles
+bodyMedium:     16sp, weight: normal                      // TextField labels
+bodySmall:      14sp, weight: normal                      // General body text
+labelLarge:     12sp, weight: w500                        // Labels
+labelSmall:     14sp, weight: normal, height: 1.8        // Subtitles
+```
+
+### Figma to Flutter Typography Mapping
+| Figma Style | Flutter TextTheme |
+|-------------|-------------------|
+| H3 (18sp, Regular) | `textTheme.bodyLarge` |
+| H4 (16sp, Regular) | `textTheme.bodyMedium` |
+| H5 body (14sp, Regular) | `textTheme.bodySmall` |
+| H6 (12sp, Regular) | `textTheme.labelLarge` |
+
+---
+
+## 2. Component Library
+
+### Widget Location
+All reusable widgets are in `lib/src/presentation/core/widget/`:
+
+```
+widget/
+├── custom_button.dart        # Primary button component
+├── custom_cache_image.dart   # Cached network images
+├── custom_post_card.dart     # Feed post cards
+├── feed_appBar.dart          # Main app bar with notifications
+├── No_data_found.dart        # Empty state widget
+├── bottomsheet.dart          # Standard bottom sheets
+├── blurred_dialoge_box.dart  # Blur dialog overlays
+└── network_status_widget.dart # Network connectivity indicator
+```
+
+### Component Architecture Pattern
+```dart
+// Stateless widgets for simple UI
+class MyWidget extends StatelessWidget {
+  final String title;
+  final VoidCallback? onTap;
+  
+  const MyWidget({super.key, required this.title, this.onTap});
+  
+  @override
+  Widget build(BuildContext context) {
+    return Container(/* ... */);
+  }
+}
+
+// Stateful with AutomaticKeepAliveClientMixin for tabs
+class MyTabWidget extends StatefulWidget {
+  const MyTabWidget({super.key});
+  
+  @override
+  State<MyTabWidget> createState() => _MyTabWidgetState();
+}
+
+class _MyTabWidgetState extends State<MyTabWidget> 
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+  
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return /* ... */;
+  }
+}
+```
+
+---
+
+## 3. Frameworks & Libraries
+
+### Core Dependencies
+```yaml
+# UI & Layout
+flutter_screenutil: ^5.9.3    # Responsive sizing (.w, .h, .sp, .r)
+gap: ^3.0.1                   # Spacing widget (Gap)
+flutter_svg: ^2.0.9           # SVG rendering (SvgPicture.asset)
+
+# State Management
+flutter_bloc: ^8.1.6          # BLoC/Cubit pattern
+get_it: ^7.7.0                # Dependency injection
+
+# Navigation
+go_router: ^14.6.0            # Declarative routing
+
+# Localization
+easy_localization: ^3.0.7+1   # Multi-language support
+
+# Images
+cached_network_image: ^3.4.1  # Network image caching
+```
+
+### Responsive Sizing Pattern
+```dart
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+// Width
+16.w  // 16 logical pixels scaled by screen width
+
+// Height
+10.h  // 10 logical pixels scaled by screen height
+
+// Font size
+14.sp // 14 sp scaled for accessibility
+
+// Border radius
+8.r   // 8 radius scaled proportionally
+```
+
+---
+
+## 4. Asset Management
+
+### Directory Structure
+```
+assets/
+├── background/    # Background images (.png, .jpg)
+├── fonts/         # Custom fonts (SF Pro Display)
+├── icon/          # Icons (.svg, .png)
+├── language/      # Translations (en.json, hi.json)
+├── logo/          # App logos and branding
+└── music/         # Audio files
+```
+
+### Asset Usage Patterns
+```dart
+// SVG icons
+SvgPicture.asset('assets/icon/my_icon.svg')
+
+// PNG images
+Image.asset('assets/background/intro_1.png')
+
+// Cached network images
+CustomCacheImage(
+  imageUrl: url,
+  borderRadius: BorderRadius.circular(8.r),
+  width: 90.w,
+  height: 90.h,
+)
+```
+
+---
+
+## 5. Icon System
+
+### Icon Storage
+All icons are in `assets/icon/` directory.
+
+### Icon Naming Convention
+```
+{feature}_{state}_{variant}.svg
+
+Examples:
+- active_home_icon.svg      # Active state
+- dashboard_icon.svg        # Default state
+- contribute_active_icon.png # PNG variant
+```
+
+### Icon Usage
+```dart
+// SVG (preferred)
+SvgPicture.asset(
+  'assets/icon/notification.svg',
+  height: 24.h,
+  width: 24.w,
+  colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+)
+
+// Material Icons (for common icons)
+Icon(Icons.check_circle, size: 24.sp, color: AppColor.orangeColor)
+```
+
+---
+
+## 6. Styling Approach
+
+### Container Styling Pattern (Figma to Flutter)
+```dart
+// Figma card with border
+Container(
+  decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(5.r),    // Figma: rounded-[5px]
+    border: Border.all(
+      color: const Color(0x2E3C3C43),            // Figma: rgba(60,60,67,0.18)
+      width: 1,
+    ),
+  ),
+  padding: EdgeInsets.all(16.w),
+  child: /* content */,
+)
+```
+
+### Button Styling Pattern
+```dart
+// Primary Button (Accept - Green)
+Container(
+  padding: EdgeInsets.symmetric(vertical: 4.h),
+  decoration: BoxDecoration(
+    color: const Color(0xFF12B76A),
+    borderRadius: BorderRadius.circular(5.r),
+  ),
+  child: Center(
+    child: Text(
+      'Accept',
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
+  ),
+)
+
+// Secondary Button (Reject - Red Border)
+Container(
+  padding: EdgeInsets.symmetric(vertical: 4.h),
+  decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(5.r),
+    border: Border.all(color: Colors.red, width: 1),
+  ),
+  child: /* ... */,
+)
+
+// Tertiary Button (Details - Grey Border)
+Container(
+  padding: EdgeInsets.symmetric(vertical: 4.h),
+  decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(5.r),
+    border: Border.all(color: const Color(0xFFD9D9D9)),
+  ),
+  child: /* ... */,
+)
+```
+
+### Chip/Tab Styling Pattern
+```dart
+// Selected Chip (Peach background)
+Container(
+  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
+  decoration: BoxDecoration(
+    color: const Color(0xFFFEE8E0),  // Selected: peach
+    borderRadius: BorderRadius.circular(10.r),
+    border: Border.all(
+      color: const Color(0xFFDDDDDD),
+      width: 0.787,
+    ),
+  ),
+  child: Text(
+    label,
+    style: TextStyle(
+      fontSize: 14.sp,
+      color: const Color(0xFF241601),  // Figma primary-text
+    ),
+  ),
+)
+
+// Unselected Chip
+Container(
+  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
+  decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(10.r),
+    border: Border.all(
+      color: const Color(0xFFDDDDDD),
+      width: 0.787,
+    ),
+  ),
+  child: /* ... */,
+)
+```
+
+### Error/Alert Box Pattern
+```dart
+// Error message box (Already assigned)
+Container(
+  padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 4.h),
+  decoration: BoxDecoration(
+    color: const Color(0xFFFDF2EE),      // Light red background
+    borderRadius: BorderRadius.circular(5.r),
+    border: Border.all(
+      color: const Color(0xFFFFE0D4),    // Peach border
+      width: 0.5,
+    ),
+  ),
+  child: Text(
+    errorMessage,
+    style: TextStyle(
+      fontSize: 12.sp,
+      color: Colors.red,
+      height: 1.4,
+    ),
+  ),
+)
+```
+
+---
+
+## 7. Project Structure
+
+### Clean Architecture Pattern
+```
+lib/src/
+├── application/       # BLoC/Cubit (Business Logic)
+│   ├── job/
+│   │   ├── job_cubit.dart
+│   │   └── job_state.dart
+│   └── ...
+├── core/              # Core utilities
+│   ├── api/           # API calling, constants
+│   ├── network/       # Network handling
+│   ├── router/        # Navigation
+│   └── shared_preference.dart
+├── data/              # Data layer
+│   ├── model/         # Data models
+│   └── repositories/  # API implementations
+├── domain/            # Domain layer
+│   └── repo_impl/     # Repository interfaces
+└── presentation/      # UI layer
+    ├── core/          # Shared UI (widgets, theme, colors)
+    ├── dashboard/     # Dashboard feature
+    ├── feed/          # Feed feature
+    └── ...
+```
+
+### Feature Organization Pattern
+```
+feature_name/
+├── feature_screen.dart           # Main screen
+├── feature_cubit.dart            # State management
+├── feature_state.dart            # State definitions
+└── widget/                       # Feature-specific widgets
+    ├── feature_card.dart
+    └── feature_dialog.dart
+```
+
+---
+
+## 8. Localization
+
+### String Constants
+All user-facing strings should use `StringConstant` from `lib/src/presentation/core/constants/strings.dart`:
+
+```dart
+// Definition
+static String get accept => 'accept'.tr();
+static String get reject => 'reject'.tr();
+static String get details => 'details'.tr();
+
+// Usage
+Text(StringConstant.accept)
+```
+
+### Translation Files
+Located in `assets/language/`:
+- `en.json` - English
+- `hi.json` - Hindi
+
+### Adding New Strings
+1. Add to `strings.dart`:
+   ```dart
+   static String get newString => 'new_string'.tr();
+   ```
+2. Add to `en.json`:
+   ```json
+   "new_string": "New String"
+   ```
+3. Add to `hi.json`:
+   ```json
+   "new_string": "नई स्ट्रिंग"
+   ```
+
+---
+
+## 9. Figma to Flutter Conversion Checklist
+
+When implementing Figma designs:
+
+- [ ] Extract colors and map to `AppColor` or define new constants
+- [ ] Use `flutter_screenutil` for all dimensions (`.w`, `.h`, `.sp`, `.r`)
+- [ ] Use `Theme.of(context).textTheme` for typography
+- [ ] Create reusable widgets for repeated patterns
+- [ ] Use `StringConstant` for all user-facing text
+- [ ] Add translations to both `en.json` and `hi.json`
+- [ ] Follow existing BLoC/Cubit patterns for state management
+- [ ] Match border radius: Figma `5px` → Flutter `5.r`
+- [ ] Match padding: Figma `10px` → Flutter `10.w` or `10.h`
+- [ ] Use `CustomCacheImage` for network images
+- [ ] Use `SvgPicture.asset` for SVG icons
+
+---
+
+## 10. Common Figma Design Patterns
+
+### Card Component
+```dart
+Container(
+  margin: EdgeInsets.only(bottom: 10.h),
+  decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(5.r),
+    border: Border.all(
+      color: const Color(0x2E3C3C43),
+      width: 1,
+    ),
+  ),
+  child: Padding(
+    padding: EdgeInsets.all(16.w),
+    child: Column(/* ... */),
+  ),
+)
+```
+
+### Row with Space Between
+```dart
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  children: [
+    Text('Label', style: TextStyle(fontSize: 14.sp, color: Colors.grey[600])),
+    Text('Value', style: TextStyle(fontSize: 14.sp, color: Colors.grey[600])),
+  ],
+)
+```
+
+### Image with Info Section
+```dart
+Row(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    // Image (left)
+    ClipRRect(
+      borderRadius: BorderRadius.circular(3.r),
+      child: CustomCacheImage(
+        imageUrl: url,
+        width: 104.w,
+        height: 78.h,
+      ),
+    ),
+    SizedBox(width: 12.w),
+    // Info (right)
+    Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600)),
+          SizedBox(height: 6.h),
+          Text('Plan Name: Basic', style: TextStyle(fontSize: 14.sp, color: Colors.grey[600])),
+        ],
+      ),
+    ),
+  ],
+)
+```
+
+### Action Buttons Row
+```dart
+Row(
+  children: [
+    Expanded(child: _buildAcceptButton()),
+    SizedBox(width: 8.w),
+    Expanded(child: _buildRejectButton()),
+    SizedBox(width: 8.w),
+    Expanded(child: _buildDetailsButton()),
+  ],
+)
+```

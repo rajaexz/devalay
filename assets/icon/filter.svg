@@ -1,0 +1,24 @@
+<svg width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="filter-svgrepo-com (2) 1">
+<g clip-path="url(#clip0_1754_22263)">
+<rect width="40" height="36" rx="4" fill="#EC9111"/>
+<g id="Page-1">
+<g id="Filter">
+<path id="Path" d="M10 11H27" stroke="white" stroke-linecap="round"/>
+<path id="Path_2" d="M10 18H18" stroke="white" stroke-linecap="round"/>
+<path id="Path_3" d="M24 18H32" stroke="white" stroke-linecap="round"/>
+<path id="Path_4" d="M16 25H32" stroke="white" stroke-linecap="round"/>
+<path id="Oval" d="M31 13C32.1046 13 33 12.1046 33 11C33 9.89543 32.1046 9 31 9C29.8954 9 29 9.89543 29 11C29 12.1046 29.8954 13 31 13Z" stroke="white" stroke-linecap="round"/>
+<path id="Oval_2" d="M21 20C22.1046 20 23 19.1046 23 18C23 16.8954 22.1046 16 21 16C19.8954 16 19 16.8954 19 18C19 19.1046 19.8954 20 21 20Z" stroke="white" stroke-linecap="round"/>
+<path id="Oval_3" d="M12 27C13.1046 27 14 26.1046 14 25C14 23.8954 13.1046 23 12 23C10.8954 23 10 23.8954 10 25C10 26.1046 10.8954 27 12 27Z" stroke="white" stroke-linecap="round"/>
+</g>
+</g>
+</g>
+<rect x="0.5" y="0.5" width="39" height="35" rx="3.5" stroke="#EC9111"/>
+</g>
+<defs>
+<clipPath id="clip0_1754_22263">
+<rect width="40" height="36" rx="4" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -1,0 +1,94 @@
+{
+  "project_info": {
+    "project_number": "48111167046",
+    "project_id": "devalay-417106",
+    "storage_bucket": "devalay-417106.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48111167046:android:fb66826a2554fe84c90c47",
+        "android_client_info": {
+          "package_name": "com.devalay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48111167046-b8ft6pjpiuebs1mjsli9gq8nbp22vgpu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devalay",
+            "certificate_hash": "4d37fc6a0684e9b6842fc2a80c39ca288b410121"
+          }
+        },
+        {
+          "client_id": "48111167046-dv227j3kmnkqu33260bc4nkp8sabno8i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devalay",
+            "certificate_hash": "60620fab2219f2fff99ea83cd4c9e679529f2191"
+          }
+        },
+        {
+          "client_id": "48111167046-io8aal9k759a5mkumjab2nf4pb9lgs7i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devalay",
+            "certificate_hash": "b7bcafb52691b6b119b384b09016b2b66d9b8e26"
+          }
+        },
+        {
+          "client_id": "48111167046-lt11q6fmna7n1ppgv1vt02uq7jrdoaa8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devalay",
+            "certificate_hash": "e89a5e231fdbd9f2c8b75759db40a8a4208c1605"
+          }
+        },
+        {
+          "client_id": "48111167046-so7iimosl94ds2aot5nb001p2lb74d7k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devalay",
+            "certificate_hash": "9de0ca7444691b287fe6da92fded596b30708674"
+          }
+        },
+        {
+          "client_id": "48111167046-u5d4j5u2bg0ne5arja4a9psqmlnccc81.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devalay",
+            "certificate_hash": "86251b8eb2218fb816b584b0fd8e4fc87e2b032b"
+          }
+        },
+        {
+          "client_id": "48111167046-rbuj6fri73poh81nmmqrjrs2kt3limgt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMBDzUl1KqSs4daD6Qo20YuLmPg-tI6pI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48111167046-hfo1uegptejr6eaaievbd3porf92m0k7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "48111167046-kvf273r6lpe0i1imtbetpnu0dtshac07.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ios.devalay"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

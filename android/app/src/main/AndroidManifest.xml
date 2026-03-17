@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.devalay"> 
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    
+    <application
+        android:label="Devalay"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
+        android:enableOnBackInvokedCallback="true">
+        
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            
+            <!-- Meta data -->
+            <meta-data
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme" />
+            
+            <meta-data
+                android:name="flutterEmbedding"
+                android:value="2" />
+            
+            <meta-data
+                android:name="flutter_deeplinking_enabled"
+                android:value="true" />
+            
+            <meta-data
+                android:name="android.webkit.WebView.EnableSafeBrowsing"
+                android:value="false" />
+            
+            <meta-data
+                android:name="android.webkit.WebView.MetricsOptOut"
+                android:value="true" />
+            
+            <meta-data
+                android:name="com.google.firebase.messaging.default_notification_icon"
+                android:resource="@drawable/ic_notification" />
+            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+         
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                
+                <!-- Define scheme and host once -->
+                <data android:scheme="https" android:host="devalay.org" />
+                
+                <!-- Then add all path patterns -->
+                <data android:pathPrefix="/apis/" />
+                <data android:pathPrefix="/api/" />
+                <data android:pathPrefix="/Post/" />
+                <data android:pathPattern="/apis/Post/.*" />
+                <data android:pathPattern="/api/Post/.*" />
+                <data android:pathPattern="/apis/Event/.*" />
+                <data android:pathPattern="/api/Event/.*" />
+                <data android:pathPattern="/apis/Devalay/.*" />
+                <data android:pathPattern="/api/Devalay/.*" />
+                <data android:pathPattern="/apis/Festivel/.*" />
+                <data android:pathPattern="/api/Festivel/.*" />
+                <data android:pathPattern="/apis/Puja/.*" />
+                <data android:pathPattern="/api/Puja/.*" />
+            </intent-filter>
+
+            <!-- HTTP fallback - separate filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                
+                <data android:scheme="http" android:host="devalay.org" />
+                <data android:pathPrefix="/apis/" />
+                <data android:pathPrefix="/api/" />
+                <data android:pathPrefix="/Post/" />
+                <data android:pathPattern="/apis/Post/.*" />
+                <data android:pathPattern="/api/Post/.*" />
+                <data android:pathPattern="/apis/Event/.*" />
+                <data android:pathPattern="/api/Event/.*" />
+                <data android:pathPattern="/apis/Devalay/.*" />
+                <data android:pathPattern="/api/Devalay/.*" />
+                <data android:pathPattern="/apis/Festivel/.*" />
+                <data android:pathPattern="/api/Festivel/.*" />
+                <data android:pathPattern="/apis/Puja/.*" />
+                <data android:pathPattern="/api/Puja/.*" />
+            </intent-filter>
+
+        </activity>
+        
+        <activity
+            android:name="com.razorpay.CheckoutActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:exported="false"
+            android:theme="@style/CheckoutTheme">
+        </activity>
+        
+        <!-- UCrop Activity -->
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- Google Maps API Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCyg1_60NlB-xtlzhGQcoJG6OCsE6UVAu8"/>
+
+    </application>
+    
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT"/>
+            <data android:mimeType="text/plain"/>
+        </intent>
+    </queries>
+    
+</manifest>
